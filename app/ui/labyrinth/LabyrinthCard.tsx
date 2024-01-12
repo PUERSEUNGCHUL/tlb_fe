@@ -5,39 +5,52 @@ import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import GradeIcon from '@mui/icons-material/Grade';
+import { LabyrinthData } from '../../vo/Labyrinth'
 
-const LabyrinthCard = () => {
-  return (
-    <div className='w-44 h-64 bg-white rounded-md p-1'>
+import './LabyrinthCard.css';
+
+const LabyrinthCard = (props : {labyrinthData : LabyrinthData}) => {
+  const labyrinthData = props.labyrinthData;
+    return (
+      <div className='w-44 h-60 bg-white rounded-md p-1'>
         <div className='flex flex-row items-center cursor-pointer'>
-            <Avatar 
-                alt="제작자 아이콘" 
-                src="https://www.thelabyrinth.co.kr/labyrinth/upload/icon/1642125048452/puer-icon-c.gif" 
-                sx={{ width: 35, height: 35 }}
-            />
-            <div>
-                <p className='font-bold'>푸에르</p>
-                <p className="text-gray-500 text-xs">일곱개의 대양의 항해사</p>
-            </div>
+          <Avatar
+            alt="제작자 아이콘"
+            src={labyrinthData.createUserInfo?.profileImagePath} // Use the appropriate property from labyrinthData
+            sx={{ width: 35, height: 35 }}
+          />
+          <div>
+            <p className='font-bold'>{labyrinthData.createUserInfo?.nickname}</p>
+            <p className="text-gray-500 text-xs">%칭호%</p>
+          </div>
         </div>
         <div className='pt-1'>
-            <img src="https://www.thelabyrinth.co.kr/labyrinth/com/getImage.do?fileId=46409&labyrinthSeqn=5016"/>
-        </div>
+        {/* 이미지가 있을 때와 없을 때를 구분하여 스타일링 */}
+        {labyrinthData.thumbnailImageId ? (
+          <img
+            src={labyrinthData.thumbnailImageId}
+            alt="미궁 이미지"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        ) : (
+          <div style={{ width: "100%",paddingTop: "69.23%", height: "100%", backgroundColor: "#eee", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <span>No Image</span>
+          </div>
+        )}
+      </div>
         <div>
-            <p>
-            논리.<br/>
-            "당신 앞에 오래된 컴퓨터 하나가 켜져 있다."<br/>
-            (본 미궁은 컴퓨터로 플레이하는 것을 권장합니다.)<br/>
-            </p>
+        <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '0.5rem' }}>
+          <p className='font-bold'>{labyrinthData.labyrinthTitle}</p>
+        </div>
         </div>
         <div className='flex flex-row items-center justify-between pt-1'>
-            <PlayArrowIcon/>
-            <ContentPasteSearchIcon/>
-            <ThumbUpOffAltIcon/>
-            <GradeIcon/>
+          <PlayArrowIcon className='card_icon' aria-label="시작하기" />
+          <ContentPasteSearchIcon className='card_icon' aria-label="관련 게시판 목록 조회" />
+          <ThumbUpOffAltIcon className='card_icon' aria-label="좋아요" />
+          <GradeIcon className='card_icon' aria-label="별점주기" />
         </div>
-    </div>
-  )
-}
+      </div>
+    );
+  };
 
 export default LabyrinthCard
