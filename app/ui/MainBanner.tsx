@@ -10,7 +10,7 @@ const MainBanner = () => {
 
   const getData = async () => {
 
-    const response = await axios.get('http://localhost:8080/api/v1/labyrinth?limit=8');
+    const response = await axios.get('http://localhost:8080/api/v1/labyrinth?limit=8&isCert=1');
 
     const labyrinthList:LabyrinthData[] = response.data.responseData.labyrinthList;
     console.log(labyrinthList);

@@ -7,7 +7,7 @@ import MainMenu from './ui/MainMenu';
 export default function Home() {
   return (
     <>
-      <Header/>
+      
       <MainBanner/>
       
       <MainMenu/>

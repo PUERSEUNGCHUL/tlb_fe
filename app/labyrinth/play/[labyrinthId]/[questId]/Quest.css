@@ -1,0 +1,16 @@
+.answer_area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer.answer_area {
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    bottom: 0;
+    z-index: 9999;
+}

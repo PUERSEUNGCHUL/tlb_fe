@@ -8,8 +8,13 @@ import GradeIcon from '@mui/icons-material/Grade';
 import { LabyrinthData } from '../../vo/Labyrinth'
 
 import './LabyrinthCard.css';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const LabyrinthCard = (props : {labyrinthData : LabyrinthData}) => {
+
+  const router = useRouter();
+
   const labyrinthData = props.labyrinthData;
     return (
       <div className='w-44 h-60 bg-white rounded-md p-1'>
@@ -37,14 +42,16 @@ const LabyrinthCard = (props : {labyrinthData : LabyrinthData}) => {
             <span>No Image</span>
           </div>
         )}
-      </div>
+      </div>  
         <div>
         <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '0.5rem' }}>
           <p className='font-bold'>{labyrinthData.labyrinthTitle}</p>
         </div>
         </div>
         <div className='flex flex-row items-center justify-between pt-1'>
-          <PlayArrowIcon className='card_icon' aria-label="시작하기" />
+          <Link href={`/labyrinth/play/${labyrinthData.labyrinthId}/0`}>
+            <PlayArrowIcon className='card_icon' aria-label="시작하기" />
+          </Link>
           <ContentPasteSearchIcon className='card_icon' aria-label="관련 게시판 목록 조회" />
           <ThumbUpOffAltIcon className='card_icon' aria-label="좋아요" />
           <GradeIcon className='card_icon' aria-label="별점주기" />
